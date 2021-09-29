@@ -36,3 +36,5 @@ def sample():
 sample()
 time. sleep(30)
 sample()
+
+print ('comand finished')
