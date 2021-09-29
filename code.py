@@ -5,17 +5,15 @@ import requests
 import time
 import configparser
 
+sensorpin = 4
+sensorpin1 = 17
+sensormodel = Adafruit_DHT.AM2302
 config = configparser.ConfigParser()
 config.read('config.ini')
 thingspeak_key = config['keys']['thingy']
 
-sensormodel = Adafruit_DHT.AM2302
-sensorpin = 4
-sensorpin1 = 17
-
 def sample():
     humsealing, tempsealing = Adafruit_DHT.read_retry(sensormodel, sensorpin)
-
     humout, tempout = Adafruit_DHT.read_retry(sensormodel, sensorpin1)
 
     if humsealing is None or tempsealing is None:
