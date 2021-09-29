@@ -15,10 +15,10 @@ config = configparser.ConfigParser() # import thingyspeak key
 config.read('config.ini')
 thingspeak_key = config['keys']['thingy']
 
-allsum_humsealing = 0 # Not sure if needed, just keeping that for safety
-allsum_tempsealing = 0
-allsum_humout = 0
-allsum_tempout = 0
+allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
+allsum_tempsealing = 0.0
+allsum_humout = 0.0
+allsum_tempout = 0.0
 
 
 def sample():
