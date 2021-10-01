@@ -34,7 +34,7 @@ def sample():
 
 for x in range(samplecount):
     sample()
-    allsum_humout = allsum_humout + humsealing # Adds all values to sums, later used to calculate the avarage, too bored to do it with an array
+    allsum_humout = allsum_humout + humout # Adds all values to sums, later used to calculate the avarage, too bored to do it with an array
     allsum_humsealing = allsum_humsealing + humsealing
     allsum_tempout = allsum_tempout + tempout
     allsum_tempsealing = allsum_tempsealing + tempsealing
