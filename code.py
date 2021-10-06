@@ -44,6 +44,6 @@ for x in range(samplecount):
 humout = allsum_humout / samplecount # Calculating avarages
 humsealing = allsum_humsealing / samplecount
 tempout = allsum_tempout / samplecount
-allsum_tempsealing = tempsealing /samplecount
+tempsealing = allsum_tempsealing /samplecount
 
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':tempsealing, 'field2':humsealing,'field3':tempout, 'field4':humout}) # Finally sending the data
