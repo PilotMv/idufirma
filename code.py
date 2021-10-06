@@ -3,17 +3,17 @@
 import Adafruit_DHT # Import a (probably proprietary) deprecated library https://github.com/adafruit/Adafruit_Python_DHT
 import requests
 import time
-import configparser
 
-sleeptime = 30 #User configurable part # in seconds
-samplecount = 3 #Samples per run
+sleeptime = 30 # User configurable part # in seconds
+samplecount = 3 # Samples per run
 sensorpin = 4
 sensorpin1 = 17
 
+f = open("config.ini", "r") # Opening config.ini file
+thingspeak_key = f.read()
+f.close()
+
 sensormodel = Adafruit_DHT.AM2302 # Importing sensor for DHT library
-config = configparser.ConfigParser() # import thingyspeak key
-config.read('config.ini')
-thingspeak_key = config['keys']['thingy']
 
 allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
 allsum_tempsealing = 0.0
