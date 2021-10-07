@@ -62,8 +62,9 @@ try:
         array = unpack('d' * (len(packed) // 8), packed) # 8 bytes per double
         file.close()
 except FileNotFoundError:
-    with open('.last', 'xb') as file:
-        file.write(pack('d' * len [0,0,0,0], *[0,0,0,0]))
+    array = [0,0,0,0]
+    with open('.last', 'wb') as file:
+        file.write(pack('d' * len(array) , *array))
         file.close()
 
 if (abs(array[0] - humout) > tolerance_humout or abs(array[1] - humsealing) > tolerance_humsealing or abs(array[2] - tempout) > tolerance_tempout or abs(array[3] - tempsealing) > tolerance_tempsealing):
