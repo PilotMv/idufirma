@@ -64,13 +64,13 @@ with open('.last', 'rb') as file:
 
 if (abs(array[0] - humout) > tolerance_humout or abs(array[1] - humsealing) > tolerance_humsealing or abs(array[2] - tempout) > tolerance_tempout or abs(array[3] - tempsealing) > tolerance_tempsealing):
     for x in range(samplecount * 5):
-    sample()
+        sample()
     allsum_humout = allsum_humout + humout # Adds all values to sums, later used to calculate the avarage, too bored to do it with an array
     allsum_humsealing = allsum_humsealing + humsealing
     allsum_tempout = allsum_tempout + tempout
     allsum_tempsealing = allsum_tempsealing + tempsealing
     if (x != (samplecount * 5)): # In case of the last measurement no delay is needed
-        time.sleep(sleeptime)
+        time.sleep(sleeptime / 10)
 
     humout = allsum_humout / (samplecount * 5) # Calculating avarages
     humsealing = allsum_humsealing / (samplecount * 5)
