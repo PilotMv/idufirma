@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
+from array import array
 import Adafruit_DHT # Import a (probably proprietary) deprecated library https://github.com/adafruit/Adafruit_Python_DHT
 import requests
 import time
+from struct import pack, unpack
 
 sleeptime = 30 # User configurable part # in seconds
 samplecount = 3 # Samples per run
@@ -20,6 +22,15 @@ allsum_tempsealing = 0.0
 allsum_humout = 0.0
 allsum_tempout = 0.0
 
+tolerance_humout = 40
+tolerance_humsealing = 20
+tolerance_tempout = 10
+tolerance_tempsealing = 5
+
+old_humout = 0
+old_humsealing = 0
+old_tempout = 0
+old_tempsealing = 0
 
 def sample():
     global humsealing
@@ -45,5 +56,31 @@ humout = allsum_humout / samplecount # Calculating avarages
 humsealing = allsum_humsealing / samplecount
 tempout = allsum_tempout / samplecount
 tempsealing = allsum_tempsealing /samplecount
+
+with open('.last', 'rb') as file:
+    packed = file.read()
+    array = unpack('d' * (len(packed) // 8), packed) # 8 bytes per double
+    file.close()
+
+if (abs(array[0] - humout) > tolerance_humout or abs(array[1] - humsealing) > tolerance_humsealing or abs(array[2] - tempout) > tolerance_tempout or abs(array[3] - tempsealing) > tolerance_tempsealing):
+    for x in range(samplecount * 5):
+    sample()
+    allsum_humout = allsum_humout + humout # Adds all values to sums, later used to calculate the avarage, too bored to do it with an array
+    allsum_humsealing = allsum_humsealing + humsealing
+    allsum_tempout = allsum_tempout + tempout
+    allsum_tempsealing = allsum_tempsealing + tempsealing
+    if (x != (samplecount * 5)): # In case of the last measurement no delay is needed
+        time.sleep(sleeptime)
+
+    humout = allsum_humout / (samplecount * 5) # Calculating avarages
+    humsealing = allsum_humsealing / (samplecount * 5)
+    tempout = allsum_tempout / (samplecount * 5)
+    tempsealing = allsum_tempsealing /(samplecount * 5)
+
+array = [humout, humsealing, tempout, tempsealing] # Store value
+with open('.last', 'wb') as file:
+    file.write(pack('d' * len(array) , *array))
+    file.close()
+
 
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':tempsealing, 'field2':humsealing,'field3':tempout, 'field4':humout}) # Finally sending the data
