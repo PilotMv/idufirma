@@ -11,7 +11,7 @@ samplecount = 3 # Samples per run
 sensorpin = 4
 sensorpin1 = 17
 
-f = open("config.ini", "r") # Opening config.ini file
+f = open('config.ini', 'r') # Opening config.ini file
 thingspeak_key = f.read()
 f.close()
 
@@ -56,11 +56,15 @@ humout = allsum_humout / samplecount # Calculating avarages
 humsealing = allsum_humsealing / samplecount
 tempout = allsum_tempout / samplecount
 tempsealing = allsum_tempsealing /samplecount
-
-with open('.last', 'rb') as file:
-    packed = file.read()
-    array = unpack('d' * (len(packed) // 8), packed) # 8 bytes per double
-    file.close()
+try:
+    with open('.last', 'rb') as file:
+        packed = file.read()
+        array = unpack('d' * (len(packed) // 8), packed) # 8 bytes per double
+        file.close()
+except FileNotFoundError:
+    with open('.last', 'xb') as file:
+        file.write(pack('d' * len [0,0,0,0], *[0,0,0,0]))
+        file.close()
 
 if (abs(array[0] - humout) > tolerance_humout or abs(array[1] - humsealing) > tolerance_humsealing or abs(array[2] - tempout) > tolerance_tempout or abs(array[3] - tempsealing) > tolerance_tempsealing):
     for x in range(samplecount * 5):
