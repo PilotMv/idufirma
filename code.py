@@ -28,11 +28,6 @@ tolerance_humsealing = 20
 tolerance_tempout = 10
 tolerance_tempsealing = 5
 
-old_humout = 0.0
-old_humsealing = 0.0
-old_tempout = 0.0
-old_tempsealing = 0.0
-
 def sample():
     global humsealing
     global tempsealing
@@ -89,6 +84,5 @@ array = [humout, humsealing, tempout, tempsealing] # Store value
 with open('.last', 'wb') as file:
     file.write(pack('d' * len(array) , *array))
     file.close()
-
 
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':tempsealing, 'field2':humsealing,'field3':tempout, 'field4':humout}) # Finally sending the data
