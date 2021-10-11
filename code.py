@@ -27,11 +27,6 @@ tolerance_humsealing = 20
 tolerance_tempout = 10
 tolerance_tempsealing = 5
 
-# old_humout = 0.0
-# old_humsealing = 0.0
-# old_tempout = 0.0
-# old_tempsealing = 0.0
-
 def sample():
     global humsealing
     global tempsealing
