@@ -10,6 +10,7 @@ sleeptime = 30 # User configurable part # in seconds
 samplecount = 3 # Samples per run
 sensorpin = 4
 sensorpin1 = 17
+reportunstable = True
 
 f = open('config.ini', 'r') # Opening config.ini file
 thingspeak_key = f.read()
@@ -68,6 +69,8 @@ except FileNotFoundError:
         file.close()
 
 if (abs(array[0] - humout) > tolerance_humout or abs(array[1] - humsealing) > tolerance_humsealing or abs(array[2] - tempout) > tolerance_tempout or abs(array[3] - tempsealing) > tolerance_tempsealing):
+    if (reportunstable):
+        mf = requests.post('https://api.thingspeak.com/update.json', data = {'api_key':thingspeak_key, 'status':'Reading unstable'})
     for x in range(samplecount * 5):
         sample()
     allsum_humout = allsum_humout + humout # Adds all values to sums, later used to calculate the avarage, too bored to do it with an array
