@@ -17,10 +17,10 @@ f.close()
 
 sensormodel = Adafruit_DHT.AM2302 # Importing sensor for DHT library
 
-# allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
-# allsum_tempsealing = 0.0
-# allsum_humout = 0.0
-# allsum_tempout = 0.0
+allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
+allsum_tempsealing = 0.0
+allsum_humout = 0.0
+allsum_tempout = 0.0
 
 tolerance_humout = 40
 tolerance_humsealing = 20
