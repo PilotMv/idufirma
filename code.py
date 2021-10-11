@@ -17,20 +17,20 @@ f.close()
 
 sensormodel = Adafruit_DHT.AM2302 # Importing sensor for DHT library
 
-allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
-allsum_tempsealing = 0.0
-allsum_humout = 0.0
-allsum_tempout = 0.0
+# allsum_humsealing = 0.0 # Not sure if needed, just keeping that for safety
+# allsum_tempsealing = 0.0
+# allsum_humout = 0.0
+# allsum_tempout = 0.0
 
 tolerance_humout = 40
 tolerance_humsealing = 20
 tolerance_tempout = 10
 tolerance_tempsealing = 5
 
-old_humout = 0.0
-old_humsealing = 0.0
-old_tempout = 0.0
-old_tempsealing = 0.0
+# old_humout = 0.0
+# old_humsealing = 0.0
+# old_tempout = 0.0
+# old_tempsealing = 0.0
 
 def sample():
     global humsealing
@@ -86,6 +86,5 @@ array = [humout, humsealing, tempout, tempsealing] # Store value
 with open('.last', 'wb') as file:
     file.write(pack('d' * len(array) , *array))
     file.close()
-
 
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':tempsealing, 'field2':humsealing,'field3':tempout, 'field4':humout}) # Finally sending the data
