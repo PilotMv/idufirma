@@ -6,5 +6,5 @@ exit 1
 fi
 
 sudo pip3 install Adafruit_DHT
-
-#going to also set up the automation
+sudo echo "
+0,30 * * * *  python3" pwd >> /tmp/cron*/crontab
