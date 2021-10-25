@@ -7,7 +7,7 @@ import time
 from struct import pack, unpack
 import RPi.GPIO as GPIO
 
-sleeptime = 5 # User configurable part # in seconds
+sleeptime = 1 # User configurable part # in seconds
 samplecount = 3 # Samples per run
 sensorpin = 4
 reportunstable = True
