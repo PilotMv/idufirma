@@ -21,6 +21,9 @@ sensormodel = Adafruit_DHT.AM2302 # Importing sensor for DHT library
 allsum_hum = 0.0 # Not sure if needed, just keeping that for safety
 allsum_temp = 0.0
 
+hum = 0
+temp = 0
+
 tolerance_hum = 20
 tolerance_temp = 5
 
