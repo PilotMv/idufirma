@@ -5,8 +5,11 @@ Used libraries:
 
     Adafruit_DHT, requests, time, struct, array
     
- A config.ini file is also required to store the Thingyspeak key
+A config.ini file is also required to store the Thingyspeak key
 
- Install the Adafruit_DHT library by running:
+Install the Adafruit_DHT library by running:
 
     sudo bash setup.sh
+
+Install script creates a new command in crontab what can be accessed by:
+    sudo crontab -e
