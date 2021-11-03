@@ -42,3 +42,4 @@ if (temp < target_temp):
     GPIO.output(relay_pin, GPIO.LOW)
 elif (temp > target_temp):
     GPIO.output(relay_pin, GPIO.HIGH)
+GPIO.cleanup()
