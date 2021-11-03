@@ -35,7 +35,7 @@ def sample():
 sample()
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':temp, 'field2':hum}) # Finally sending the data
 
-GPIO.setmode(GPIO.board)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(relay_pin, GPIO.OUT)
 
 if (temp < target_temp):
