@@ -19,17 +19,8 @@ temp = 0
 target_temp = 29
 relay_pin = 11
 
-def sample():
-    # global hum
-    # global temp
-    hum, temp = Adafruit_DHT.read_retry(sensormodel, sensorpin) # Samples sensors and temporarely stores values in a float
+hum, temp = Adafruit_DHT.read_retry(sensormodel, sensorpin) # Samples sensors and temporarely stores values in a float
 
-    if hum is None or temp is None:
-        mf = requests.post('https://api.thingspeak.com/update.json', data = {'api_key':thingspeak_key, 'status':'failed to get reading'}) # In case of a measuring failure sends failed to get reading
-
-    return hum, temp
-
-sample()
 r = requests.post('https://api.thingspeak.com/update?', data = {'api_key':thingspeak_key, 'field1':temp, 'field2':hum}) # Finally sending the data
 
 GPIO.setmode(GPIO.BOARD)
