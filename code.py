@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from array import array
-import Adafruit_DHT # Import a (probably proprietary) deprecated library https://github.com/adafruit/Adafruit_Python_DHT
+import Adafruit_DHT # https://github.com/adafruit/Adafruit_Python_DHT
 import requests
 import time
 from struct import pack, unpack
