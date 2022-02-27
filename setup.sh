@@ -5,12 +5,12 @@ if [ $(id -u) != "0" ]; then
     exit 1
 fi
 
-sudo apt-get update
-sudo apt-get install build-essential python3-dev
-sudo apt-get install python3-gpiozero
-sudo apt-get install pip3 # currently only needed to install the Adafruit_DHT python library    
+apt-get update
+apt-get install build-essential python3-dev
+apt-get install python3-gpiozero
+apt-get install pip3 # currently only needed to install the Adafruit_DHT python library    
 
-sudo pip3 install Adafruit_DHT
+pip3 install Adafruit_DHT
 
 BASEDIR=$(pwd $0)
 
